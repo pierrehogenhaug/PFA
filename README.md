@@ -73,10 +73,11 @@ Send a POST request with a JSON payload to generate text. Example payload:
    }
 ```
 The response will include the generated text:
-
+```json
 { "generated_text": "..." }
-
+```
 ## Testing
 
 To run tests for the API:
-pytest
+```bash
+   pytest
