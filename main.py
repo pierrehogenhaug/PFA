@@ -34,8 +34,8 @@ class TextGenerationPayload(BaseModel):
     prompt: str = Field(
         ...,
         min_length=1,
-        example="Hello, I'm an LLM",
-        description="The text prompt to continue from."
+        description="The text prompt to continue from.",
+        json_schema_extra={"example": "Hello, I'm an LLM"}
     )
     max_length: int = Field(
         50,
@@ -125,8 +125,6 @@ async def predict(payload: TextGenerationPayload):
     if not payload.prompt.strip():
         logger.warning("Received an empty prompt after stripping whitespace.")
         raise HTTPException(status_code=400, detail="Prompt must not be empty.")
-
-    logger.info(f"Received prediction request on device: {payload.device} with prompt length: {len(payload.prompt)}")
 
     # Check that the requested device is available.
     if payload.device not in models:
