@@ -70,6 +70,21 @@ def read_root():
 def predict(payload: TextGenerationPayload):
     if not payload.prompt.strip():
         raise HTTPException(status_code=400, detail="Prompt must not be empty.")
+    # Validate device choice: check for CUDA and MPS availability
+    if payload.device == DeviceEnum.cuda and not torch.cuda.is_available():
+        raise HTTPException(
+            status_code=400,
+            detail="CUDA is not available but 'cuda' was requested."
+        )
+    if payload.device == DeviceEnum.mps and not torch.backends.mps.is_available():
+        raise HTTPException(
+            status_code=400,
+            detail="MPS is not available but 'mps' was requested."
+        )
+
+    # Move the model to the chosen device
+    device = payload.device.value
+    model.to(device)
     
     input_ids = tokenizer.encode(payload.prompt, return_tensors="pt")
     if payload.max_length <= input_ids.shape[1]:
