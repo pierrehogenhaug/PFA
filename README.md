@@ -54,10 +54,9 @@ Access the API at http://localhost:8000.
 ## How it works
 `/ (Root)`
 A simple endpoint that returns a greeting to confirm the service is running.
-`/health`
 
-A quick health check endpoint that returns:
-{ "status": "healthy" }
+`/health`
+A quick health check endpoint that returns: { "status": "healthy" }
 
 `/predict`
 Send a POST request with a JSON payload to generate text. Example payload:
