@@ -17,8 +17,8 @@ A lightweight API to generate text using GPT-2, built with FastAPI and Hugging F
 ## Installation
 1. **Clone the repository:**
    ```bash
-   git clone <repository_url>
-   cd <repository_directory>
+   git clone https://github.com/pierrehogenhaug/PFA.git
+   cd PFA
 2. **Install dependencies:**   
    ```bash
    pip install -r requirements.txt
@@ -49,16 +49,17 @@ docker build -t pfacase .
 - Run the container:
    ```bash
    docker run -p 8000:8000 pfacase
-
 Access the API at http://localhost:8000.
 
 ## How it works
 `/ (Root)`
 A simple endpoint that returns a greeting to confirm the service is running.
-/health
+`/health`
 A quick health check endpoint that returns:
-{ "status": "healthy" }
-/predict
+   ```bash
+   { "status": "healthy" }
+
+`/predict`
 Send a POST request with a JSON payload to generate text. Example payload:
 {
   "prompt": "Hello, I'm an LLM",
