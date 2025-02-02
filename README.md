@@ -84,7 +84,6 @@ The response will include the generated text:
 
 ### Example Usage With Docker:
 ![](https://github.com/pierrehogenhaug/PFA/blob/master/pfa_api.gif)
-
 ## Testing
 
 To run tests for the API:
