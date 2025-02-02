@@ -55,9 +55,9 @@ Access the API at http://localhost:8000.
 `/ (Root)`
 A simple endpoint that returns a greeting to confirm the service is running.
 `/health`
+
 A quick health check endpoint that returns:
-   ```bash
-   { "status": "healthy" }
+{ "status": "healthy" }
 
 `/predict`
 Send a POST request with a JSON payload to generate text. Example payload:
@@ -73,8 +73,8 @@ Send a POST request with a JSON payload to generate text. Example payload:
 The response will include the generated text:
 
 { "generated_text": "..." }
-Testing
+
+## Testing
 
 To run tests for the API:
-
 pytest
