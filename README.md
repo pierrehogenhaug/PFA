@@ -24,32 +24,37 @@ A lightweight API to generate text using GPT-2, built with FastAPI and Hugging F
    pip install -r requirements.txt
 
 ## Running the API
-1. Locally
+### Locally
 Simply run the main.py script:
    ```bash
    python main.py
+```
 This starts the FastAPI server on http://localhost:8000.
 
-2. In a Virtual Environment
-- Create and activate a virtual environment.
+### In a Virtual Environment
+Create and activate a virtual environment.
    ```bash
    python -m venv .venv
    source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-- Install dependencies:
+```
+Install dependencies:
    ```bash
    pip install -r requirements.txt
-- Launch the app:
+```
+Launch the app:
    ```bash
    python main.py
+```
 
-3. Using Docker
-- Build the Docker image:
+### Using Docker
+Build the Docker image:
    ```bash
    docker build -t pfacase .
-
-- Run the container:
+```
+Run the container:
    ```bash
    docker run -p 8000:8000 pfacase
+```
 Access the API at http://localhost:8000.
 
 ## How it works
