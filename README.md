@@ -44,8 +44,9 @@ This starts the FastAPI server on http://localhost:8000.
 
 3. Using Docker
 - Build the Docker image:
-   ``bash
-docker build -t pfacase .
+   ```bash
+   docker build -t pfacase .
+
 - Run the container:
    ```bash
    docker run -p 8000:8000 pfacase
@@ -60,17 +61,17 @@ A quick health check endpoint that returns: { "status": "healthy" }
 
 `/predict`
 Send a POST request with a JSON payload to generate text. Example payload:
-
-{
-  "prompt": "Hello, I'm an LLM",
-  "max_length": 50,
-  "temperature": 1.0,
-  "top_k": 50,
-  "top_p": 1.0,
-  "do_sample": true,
-  "device": "cpu"
-}
-
+```json
+   {
+     "prompt": "Hello, I'm an LLM",
+     "max_length": 50,
+     "temperature": 1.0,
+     "top_k": 50,
+     "top_p": 1.0,
+     "do_sample": true,
+     "device": "cpu"
+   }
+```
 The response will include the generated text:
 
 { "generated_text": "..." }
