@@ -108,6 +108,14 @@ def read_root():
     logger.info("Root endpoint was called.")
     return {"message": "Hello, World!"}
 
+@app.get("/health")
+def health_check():
+    """
+    Simple health check endpoint.
+    Returns a basic JSON indicating service status.
+    """
+    return {"status": "healthy"}
+    
 @app.post("/predict", response_model=TextGenerationResponse)
 async def predict(payload: TextGenerationPayload):
     """
