@@ -21,7 +21,23 @@ class TextGenerationPayload(BaseModel):
         1.0,
         ge=0.0,
         le=2.0,
-        description="Sampling temperature. Higher values lead to more randomness."
+        description="Sampling temperature."
+    )
+    top_k: int = Field(
+        50,
+        ge=0,
+        le=1000,
+        description="Top-k filtering parameter."
+    )
+    top_p: float = Field(
+        1.0,
+        ge=0.0,
+        le=1.0,
+        description="Top-p (nucleus) sampling parameter."
+    )
+    do_sample: bool = Field(
+        True,
+        description="Enable sampling. If false, greedy search is used."
     )
 
 # Load GPT-2 model and tokenizer at startup
@@ -46,7 +62,10 @@ def predict(payload: TextGenerationPayload):
     output_ids = model.generate(
         input_ids,
         max_length=payload.max_length,
-        temperature=payload.temperature
+        temperature=payload.temperature,
+        top_k=payload.top_k,
+        top_p=payload.top_p,
+        do_sample=payload.do_sample
     )
     generated_text = tokenizer.decode(output_ids[0], skip_special_tokens=True)
     return {"generated_text": generated_text}
