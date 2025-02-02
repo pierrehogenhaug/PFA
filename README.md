@@ -21,7 +21,7 @@ A lightweight API to generate text using GPT-2, built with FastAPI and Hugging F
    ```bash
    git clone <repository_url>
    cd <repository_directory>
-2. **Install dependencies:**
-pip install -r requirements.txt
-
-3. 
+2. **Install dependencies:**   
+   ```bash
+   pip install -r requirements.txt
+3. Running the API
