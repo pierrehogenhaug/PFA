@@ -1,8 +1,15 @@
+from enum import Enum
 from fastapi import FastAPI, HTTPException
 import uvicorn
 from pydantic import BaseModel, Field
 from transformers import AutoTokenizer, AutoModelForCausalLM
 import torch
+
+
+class DeviceEnum(str, Enum):
+    cpu = "cpu"
+    cuda = "cuda"
+    mps = "mps"
 
 # Define a request schema using Pydantic
 class TextGenerationPayload(BaseModel):
@@ -39,12 +46,21 @@ class TextGenerationPayload(BaseModel):
         True,
         description="Enable sampling. If false, greedy search is used."
     )
+    device: DeviceEnum = Field(
+        DeviceEnum.cpu,
+        description="Select between CPU, CUDA, or MPS for inference."
+    )
+
 
 # Load GPT-2 model and tokenizer at startup
 tokenizer = AutoTokenizer.from_pretrained("openai-community/gpt2")
 model = AutoModelForCausalLM.from_pretrained("openai-community/gpt2")
 
-app = FastAPI()
+app = FastAPI(
+    title="GPT-2 Text Generation API",
+    description="An API that generates text using the openai-community/gpt2 model.",
+    version="1.0.0"
+)
 
 @app.get("/")
 def read_root():
