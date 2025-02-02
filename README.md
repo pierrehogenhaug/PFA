@@ -81,6 +81,9 @@ The response will include the generated text:
 ```json
 { "generated_text": "..." }
 ```
+
+![](https://github.com/pierrehogenhaug/PFA/blob/master/pfa_api.gif)
+
 ## Testing
 
 To run tests for the API:
