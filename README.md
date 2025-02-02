@@ -60,6 +60,7 @@ A quick health check endpoint that returns: { "status": "healthy" }
 
 `/predict`
 Send a POST request with a JSON payload to generate text. Example payload:
+
 {
   "prompt": "Hello, I'm an LLM",
   "max_length": 50,
@@ -69,6 +70,7 @@ Send a POST request with a JSON payload to generate text. Example payload:
   "do_sample": true,
   "device": "cpu"
 }
+
 The response will include the generated text:
 
 { "generated_text": "..." }
