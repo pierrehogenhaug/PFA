@@ -82,6 +82,7 @@ The response will include the generated text:
 { "generated_text": "..." }
 ```
 
+### Example Usage With Docker:
 ![](https://github.com/pierrehogenhaug/PFA/blob/master/pfa_api.gif)
 
 ## Testing
