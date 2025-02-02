@@ -123,9 +123,10 @@ async def predict(payload: TextGenerationPayload):
     """
     logger.info(f"Received prediction request on device: {payload.device} with prompt length: {len(payload.prompt)}")
     if not payload.prompt.strip():
-        logger.warning("Received an empty prompt.")
+        logger.warning("Received an empty prompt after stripping whitespace.")
         raise HTTPException(status_code=400, detail="Prompt must not be empty.")
-    
+
+    logger.info(f"Received prediction request on device: {payload.device} with prompt length: {len(payload.prompt)}")
 
     # Check that the requested device is available.
     if payload.device not in models:
@@ -160,7 +161,13 @@ async def predict(payload: TextGenerationPayload):
         logger.exception(error_msg)
         raise HTTPException(status_code=500, detail=error_msg)
 
-    generated_text = tokenizer.decode(output_ids[0], skip_special_tokens=True)
+    try:
+        generated_text = tokenizer.decode(output_ids[0], skip_special_tokens=True)
+    except Exception as e:
+        error_msg = f"Error during decoding: {str(e)}"
+        logger.exception(error_msg)
+        raise HTTPException(status_code=500, detail=error_msg)
+    
     logger.info("Returning generated text.")
     return {"generated_text": generated_text}
 
